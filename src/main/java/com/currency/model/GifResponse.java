@@ -8,6 +8,5 @@ import java.util.Map;
 public class GifResponse {
 
     private Map<String,Map> data;
-//    private Map<String,String> pagination;
     private Map<String,String> meta;
 }
