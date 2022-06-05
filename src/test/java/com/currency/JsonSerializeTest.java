@@ -12,6 +12,7 @@ import java.awt.*;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.nio.file.Files;
@@ -36,9 +37,9 @@ public class JsonSerializeTest {
     @Test
     void saveMp4() throws IOException {
 //        URL url = new URL("https://i.giphy.com/media/LdOyjZ7io5Msw/giphy.gif");
-        URL url = new URL("https://media0.giphy.com/media/LdOyjZ7io5Msw/giphy.gif");
+        URL url = new URL("https://media4.giphy.com/media/sbguPwYImRDSC5lhFy/giphy-hd.mp4?cid=655ea200e853d046d43f7d5ab8bb12ed370e9a3caa603e4a&rid=giphy-hd.mp4&ct=g");
         InputStream in = url.openStream();
-        File file = new File("gif.mp4");
+        File file = new File("random-gif.mp4");
         if (!file.exists()){
             Files.copy(in, file.toPath());
         }
@@ -53,6 +54,26 @@ public class JsonSerializeTest {
     @Test
     void responseEntity() throws IOException {
         ResponseEntity response = objectMapper.readValue(new File("src/main/resources/response.json"), ResponseEntity.class);
+        System.out.println();
+    }
+    @Test
+    void asdaf() throws IOException {
+        GifResponse response = objectMapper.readValue(new File("src/main/resources/random-gif.json"), GifResponse.class);
+        System.out.println();
+    }
+
+    @Test
+    void parseMetaContent() throws IOException {
+        URL url = new URL("https://i.giphy.com/media/sbguPwYImRDSC5lhFy/giphy.gif");
+        InputStream is = url.openStream();
+        InputStreamReader isr = new InputStreamReader(is);
+        StringBuilder sb = new StringBuilder();
+        int c = isr.read();
+        while (c != -1){
+            sb.append((char) (c = isr.read()));
+        }
+        int beginIndexGifUrl = sb.toString().indexOf("meta property=\"og:url\"");
+        int endIndexGifUrl = sb.toString().indexOf("<meta property=\"og:title");
         System.out.println();
     }
 }
