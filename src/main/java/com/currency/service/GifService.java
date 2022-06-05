@@ -32,13 +32,14 @@ public class GifService {
         String gifUrl = (String) ((LinkedHashMap)((LinkedHashMap)(((LinkedHashMap)resourceResponse.getBody().get("data")).get("images"))).get("looping")).get("mp4");
         String originalGifUrl = dataUtils.extractOriginalGifUrl(gifUrl);
 
-        getImageAsByteArray(originalGifUrl,response);
+        sendContentToResponse(originalGifUrl,response);
     }
 
-    private void getImageAsByteArray(String gifUrl,HttpServletResponse response) throws IOException {
+    private void sendContentToResponse(String gifUrl, HttpServletResponse response) throws IOException {
         URL url = new URL(gifUrl);
-        InputStream in = url.openStream();
-        response.setContentType(MediaType.IMAGE_JPEG_VALUE);
-        IOUtils.copy(in, response.getOutputStream());
+        try (InputStream in = url.openStream()){
+            response.setContentType(MediaType.IMAGE_JPEG_VALUE);
+            IOUtils.copy(in, response.getOutputStream());
+        }
     }
 }

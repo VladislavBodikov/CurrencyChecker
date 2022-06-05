@@ -39,14 +39,17 @@ public class DataUtils {
     public String extractOriginalGifUrl(String gifUrl) throws IOException {
         final String findBeginIndex = "<meta property=\"og:url\" content=\"";
         final String findEndIndex = "<meta property=\"og:title";
+        StringBuilder sb = new StringBuilder();
 
         URL url = new URL(gifUrl);
-        InputStream is = url.openStream();
-        InputStreamReader isr = new InputStreamReader(is);
-        StringBuilder sb = new StringBuilder();
-        int c = isr.read();
-        while (c != -1) {
-            sb.append((char) (c = isr.read()));
+        try (InputStream is = url.openStream()){
+            try (InputStreamReader isr = new InputStreamReader(is)){
+                int c = isr.read();
+                while (c != -1) {
+                    sb.append((char) (c = isr.read()));
+                }
+            }
+
         }
         int beginIndexGifUrl = sb.toString().indexOf(findBeginIndex) + findBeginIndex.length();
         int endIndexGifUrl = sb.toString().indexOf(findEndIndex);
