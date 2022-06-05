@@ -1,6 +1,7 @@
 package com.currency.checker;
 
 import com.currency.model.RatesResponse;
+import com.currency.service.DataUtils;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.Test;
 
