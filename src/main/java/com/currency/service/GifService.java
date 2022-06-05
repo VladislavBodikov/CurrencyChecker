@@ -29,7 +29,7 @@ public class GifService {
     public void putGifToResponse(String searchWord, HttpServletResponse response) throws IOException {
         ResponseEntity<Map> resourceResponse = gifResource.gifBySearchWord(gifAppId,searchWord);
 
-        String gifUrl = (String) ((LinkedHashMap)((LinkedHashMap)(((LinkedHashMap)resourceResponse.getBody().get("data")).get("images"))).get("original")).get("url");
+        String gifUrl = (String) ((LinkedHashMap)((LinkedHashMap)(((LinkedHashMap)resourceResponse.getBody().get("data")).get("images"))).get("looping")).get("mp4");
         String originalGifUrl = dataUtils.extractOriginalGifUrl(gifUrl);
 
         getImageAsByteArray(originalGifUrl,response);
