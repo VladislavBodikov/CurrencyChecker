@@ -32,11 +32,12 @@ java -jar currencyChecker-0.0.1-SNAPSHOT.jar
 ```
 2.Endpoints:
 ---  
-Получить гифку (выставляется в application.properties - по умолчанию USD):
-```
-GET /currency/compare-base-with/***
-вместо *** любая доступная валюта из списка:
-```  
+
+Получить гифку - сравнение котировок происходит относительно валюты по умолчанию (USD):
+
+    GET /currency/compare-base-with/***
+    вместо *** любая доступная валюта из списка:
+
 "AED"
 "AFN"
 "ALL"
