@@ -13,7 +13,7 @@ import java.io.*;
 
 
 @RestController
-@RequestMapping("/currency")
+@RequestMapping("/currency/compare-base-with")
 public class MainController {
 
     @Value("${gif.search.word.rates.up}")
@@ -29,21 +29,23 @@ public class MainController {
     private GifService gifService;
 
     @GetMapping("/{currencyTo}")
-    public void course(@PathVariable("currencyTo") String currencyToCompareWithBase, HttpServletResponse response){
+    public String compareExchangeRates(@PathVariable("currencyTo") String currencyToCompareWithBase, HttpServletResponse response){
         RatesResponse actualRates = exchangeRatesService.getActualRates();
         RatesResponse previousRates = exchangeRatesService.getHistoricalRates(dataUtils.getDateAtPreviousDay(actualRates));
 
-        double actualExchangeRate = actualRates.getRates().get(currencyToCompareWithBase);
-        double previousExchangeRate = previousRates.getRates().get(currencyToCompareWithBase);
+        boolean isRatesUp = exchangeRatesService.isRatesUp(previousRates,actualRates,currencyToCompareWithBase);
 
         try {
-            if (actualExchangeRate > previousExchangeRate){
+            if (isRatesUp){
                 gifService.putGifToResponse(gifSearchRatesUp,response);
+                return "RATES UP!";
             } else {
                 gifService.putGifToResponse(gifSearchRatesDown,response);
+                return "RATES DOWN OR NOT CHANGED FOR LAST 24 HOURS";
             }
         }catch (IOException e){
             e.printStackTrace();
         }
+        return "SOMETHING WRONG!";
     }
 }

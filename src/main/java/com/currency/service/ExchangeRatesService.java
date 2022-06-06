@@ -28,4 +28,11 @@ public class ExchangeRatesService {
     public RatesResponse getHistoricalRates(String date){
         return exchangeRatesResource.historicalRates(historicalUrl, date, ratesAppId, baseCurrency);
     }
+
+    public boolean isRatesUp(RatesResponse ratesBefore, RatesResponse ratesAfter, String currencyToCompareWithBase){
+        double actualExchangeRate = ratesAfter.getRates().get(currencyToCompareWithBase);
+        double previousExchangeRate = ratesBefore.getRates().get(currencyToCompareWithBase);
+
+        return actualExchangeRate > previousExchangeRate;
+    }
 }

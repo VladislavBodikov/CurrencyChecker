@@ -29,8 +29,15 @@ public class GifService {
     public void putGifToResponse(String searchWord, HttpServletResponse response) throws IOException {
         ResponseEntity<Map> resourceResponse = gifResource.gifBySearchWord(gifAppId,searchWord);
 
-        String gifUrl = (String) ((LinkedHashMap)((LinkedHashMap)(((LinkedHashMap)resourceResponse.getBody().get("data")).get("images"))).get("looping")).get("mp4");
-        String originalGifUrl = dataUtils.extractOriginalGifUrl(gifUrl);
+        String gifUrl = "";
+        String originalGifUrl = "";
+        try {
+            gifUrl = (String) ((LinkedHashMap)((LinkedHashMap)(((LinkedHashMap)resourceResponse.getBody().get("data")).get("images"))).get("looping")).get("mp4");
+            originalGifUrl = dataUtils.extractOriginalGifUrl(gifUrl);
+        }
+        catch (NullPointerException e){
+            e.printStackTrace();
+        }
 
         sendContentToResponse(originalGifUrl,response);
     }

@@ -21,3 +21,21 @@ Must Have
 Результатом выполнения должен быть репо на GitHub с инструкцией по запуску  
 Nice to Have  
 Сборка и запуск Docker контейнера с этим сервисом
+
+
+Инструкция по работе:
+---
+1.Запуск .jar:
+---
+```
+java -jar gif_giver-0.0.1.jar
+```
+2.Endpoints:
+---  
+Получить список кодов для валют:
+```
+GET /currencies/getcodes
+```  
+Получить гифку  
+(пример ответа: https://api.giphy.com/v1/gifs/random?api_key=R4DaQAgkZAVHt8At21gcVjGshLrHeThw&tag=rich):
+```
