@@ -32,6 +32,8 @@ java -jar currencyChecker-0.0.1-SNAPSHOT.jar
 ```
 2.Endpoints:
 ---  
+root URL: localhost:9000
+
 
 Получить гифку - сравнение котировок происходит относительно валюты по умолчанию (USD):
 
