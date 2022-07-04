@@ -25,10 +25,15 @@ Nice to Have
 
 Инструкция по работе:
 ---
-1.Запуск .jar:
+1.1 Запуск через .jar:
 ---
 ```
 java -jar currencyChecker-0.0.1-SNAPSHOT.jar
+```
+1.2 Запуск через docker:
+---
+```
+docker-compose up -d
 ```
 2.Endpoints:
 ---  
