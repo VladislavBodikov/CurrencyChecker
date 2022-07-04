@@ -5,8 +5,8 @@ Compare Exchange Rates of different currencies and show GIF
 
 если курс по отношению к рублю за сегодня стал выше вчерашнего,  
 то отдаем рандомную отсюда 
-```https://giphy.com/search/rich  ```\
-если ниже - отсюда ```https://giphy.com/search/broke ```
+https://giphy.com/search/rich  \
+если ниже - отсюда   https://giphy.com/search/broke
 \
 \
 Ссылки  
