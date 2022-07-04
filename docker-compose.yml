@@ -1,6 +1,6 @@
 #version: "3.3"
 services:
   web:
-    image: "currency_image"
+    image: "krullerr/currency_checker:latest"
     ports:
       - "9000:9000"
