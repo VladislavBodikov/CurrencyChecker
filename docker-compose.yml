@@ -1,0 +1,6 @@
+#version: "3.3"
+services:
+  web:
+    image: "currency_image"
+    ports:
+      - "9000:9000"

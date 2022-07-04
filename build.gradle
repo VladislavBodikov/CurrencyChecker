@@ -17,7 +17,13 @@ configurations {
 repositories {
 	mavenCentral()
 }
-
+jar {
+	manifest {
+		attributes(
+				'Main-Class': 'com.currency.CurrencyCheckerApplication'
+		)
+	}
+}
 ext {
 	set('springCloudVersion', "2021.0.3")
 }
